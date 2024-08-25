@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Qwitcher+Grypen:wght@400;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Qwitcher Grypen", cursive;
+}
+
+body {
+  background-color: black;
+  /* background-color: #353535; */
+}
+
+body::after {
+  content: "";
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100svw;
+  min-height: 100svh;
+  background-image: url("beansBg.png");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  animation: bodyAppear forwards 1s ease-in;
+}
+
+@keyframes bodyAppear {
+  0% {
+    filter: blur(10px) brightness(0%);
+  }
+
+  100% {
+    filter: blur(0px) brightness(50%);
+  }
+}

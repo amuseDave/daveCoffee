@@ -7,7 +7,7 @@ export default function Section({ title, img, left, right, multiple }) {
   if (multiple === 2) {
     sectionScrollOpacity = useTransform(
       scrollYProgress,
-      [0, 0.5, 0.6, 0.78, 0.88],
+      [0, 0.56, 0.66, 0.78, 0.88],
       [0, 0, 1, 1, 0]
     );
   }
@@ -15,7 +15,7 @@ export default function Section({ title, img, left, right, multiple }) {
   if (multiple === 1) {
     sectionScrollOpacity = useTransform(
       scrollYProgress,
-      [0, 0.24, 0.28, 0.45, 0.57],
+      [0, 0.3, 0.34, 0.5, 0.64],
       [0, 0, 1, 1, 0]
     );
   }

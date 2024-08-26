@@ -8,7 +8,7 @@ export default function StartingSection() {
 
   const coffeeImgScroll = useTransform(
     scrollY,
-    [0, 300, 400, 500],
+    [150, 400, 500, 600],
     [1, 0.5, 0.5, 0]
   );
   const productsBttn = useTransform(

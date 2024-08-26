@@ -23,13 +23,13 @@ export default function StartingSection() {
     }, 1000);
   }, []);
   return (
-    <div className="flex flex-col justify-center items-center w-[400px] min-h-[538px] pt-10 mb-80">
+    <div className="flex flex-col justify-center items-center md:w-[400px] sm:w-[320px] w-[300px] min-h-[538px] pt-10 mb-80">
       <motion.img
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: [0, 1], y: 0 }}
         transition={{ duration: 1 }}
         src={coffeeImg}
-        className="brightness-50 md:w-[400px] w-[320px]"
+        className="brightness-50 md:w-[400px] sm:w-[320px] w-[300px]"
         style={{ opacity: coffeeImgScroll }}
       />
       <motion.button
@@ -45,7 +45,7 @@ export default function StartingSection() {
 
           transition: { duration: 0.15 }, // Shorter duration for hover effect
         }}
-        className="text-stone-300 text-3xl md:text-5xl font-bold bg-stone-800 rounded-lg py-1 px-4 "
+        className="px-4 py-1 text-3xl font-bold rounded-lg text-stone-300 md:text-5xl bg-stone-800 "
         style={{ opacity: productsBttn }}
       >
         <Link to="products"> Browse Our Products</Link>

@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import RootLayout from "./components/RootLayout";
 import ProductsPage from "./pages/ProductsPage";
+import CartPage from "./pages/CartPage";
 
 const router = createBrowserRouter([
   {
@@ -9,7 +10,11 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: "products", element: <ProductsPage /> },
+      {
+        path: "products",
+        element: <ProductsPage />,
+        children: [{ path: "cart", element: <CartPage /> }],
+      },
     ],
   },
 ]);

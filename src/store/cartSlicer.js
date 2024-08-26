@@ -17,63 +17,63 @@ const initialState = {
     {
       id: "c1",
       img: p1,
-      description: "African Coffee",
+      title: "African Coffee",
       priceCents: 499,
       selectedQuantity: 1,
     },
     {
       id: "c2",
       img: p2,
-      description: "best coffee",
+      title: "best coffee",
       priceCents: 999,
       selectedQuantity: 1,
     },
     {
       id: "c3",
       img: p3,
-      description: "best coffee",
+      title: "best coffee",
       priceCents: 499,
       selectedQuantity: 1,
     },
     {
       id: "c4",
       img: p4,
-      description: "best coffee",
+      title: "best coffee",
       priceCents: 999,
       selectedQuantity: 1,
     },
     {
       id: "c5",
       img: p5,
-      description: "best coffee",
+      title: "best coffee",
       priceCents: 499,
       selectedQuantity: 1,
     },
     {
       id: "c6",
       img: p6,
-      description: "best coffee",
+      title: "best coffee",
       priceCents: 299,
       selectedQuantity: 1,
     },
     {
       id: "c7",
       img: p7,
-      description: "best coffee",
+      title: "best coffee",
       priceCents: 249,
       selectedQuantity: 1,
     },
     {
       id: "c8",
       img: p8,
-      description: "best coffee",
+      title: "best coffee",
       priceCents: 199,
       selectedQuantity: 1,
     },
     {
       id: "c9",
       img: p9,
-      description: "best coffee",
+      title: "best coffee",
       priceCents: 899,
       selectedQuantity: 1,
     },
@@ -83,7 +83,28 @@ const cartSlicer = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addItem(state, action) {},
+    addItem(state, action) {
+      const product = state.products.find(
+        (product) => product.id === action.payload
+      );
+      const cartIndex = state.cart.findIndex(
+        (cartItem) => cartItem.id === action.payload
+      );
+
+      if (cartIndex === -1) {
+        state.cart.push({
+          quantity: product.selectedQuantity,
+          title: product.title,
+          priceCents: product.priceCents,
+          totalPriceCents: product.priceCents * product.selectedQuantity,
+        });
+      } else {
+        state.cart[cartIndex].quantity += product.quantity;
+        state.cart[cartIndex].totalPriceCents +=
+          product.selectedQuantity * product.priceCents;
+      }
+      product.selectedQuantity = 1;
+    },
     removeItem() {},
     increaseQuantity(state, action) {
       const productIndex = state.products.findIndex(

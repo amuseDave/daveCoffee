@@ -1,4 +1,5 @@
 import cartAddImg from "../assets/addbag.png";
+import cartBagAddImg from "../assets/coffee-bean-bag-add.png";
 import { priceFormatter } from "../util/priceFormat";
 import { motion, useAnimate } from "framer-motion";
 
@@ -9,6 +10,7 @@ export default function Product({ product }) {
   const dispatch = useDispatch();
   const [scope, animate] = useAnimate();
   const [scope2, animate2] = useAnimate();
+  const [scope3, animate3] = useAnimate();
 
   function handleIncreaseQuantity() {
     if (product.selectedQuantity === 9) {
@@ -40,6 +42,11 @@ export default function Product({ product }) {
   function handleAddItem() {
     dispatch(cartActions.addItem(product.id));
     animate(scope2.current, { rotateZ: [0, 15, 0, -15, 0] }, { duration: 0.1 });
+    animate(
+      scope3.current,
+      { opacity: [0, 1, 0, 0], x: [0, 300, 300, 0], y: [0, -300, -300, 0] },
+      { duration: 1 }
+    );
   }
 
   return (
@@ -51,14 +58,22 @@ export default function Product({ product }) {
       transition={{ duration: 0.5 }}
       className="sm:w-[300px] min-h-[230px] w-[280px] relative"
     >
+      <motion.div
+        ref={scope3}
+        animate={{ opacity: 0 }}
+        className="absolute w-[40px] opacity-0 bottom-6 right-0"
+      >
+        <img src={cartBagAddImg} className="select-none" />
+      </motion.div>
+
       <img
         className="opacity-75 brightness-75 sm:h-[210px] sm:w-[400px] h-[180px] w-[360px] object-cover rounded-xl border-2 border-stone-500"
         src={product.img}
-        alt={product.description}
+        alt={product.title}
       />
       <div className="flex justify-between mt-1">
         <p className="text-lg font-medium text-stone-400">
-          {product.description} -{" "}
+          {product.title} -{" "}
           <span className="text-base text-stone-200">
             {priceFormatter(product.priceCents)}
           </span>

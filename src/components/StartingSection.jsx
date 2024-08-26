@@ -23,7 +23,7 @@ export default function StartingSection() {
     }, 1000);
   }, []);
   return (
-    <div className="flex flex-col justify-center items-center md:w-[400px] sm:w-[320px] w-[300px] min-h-[538px] pt-10 mb-80">
+    <div className="flex flex-col justify-center items-center h-svh min-h-[538px]">
       <motion.img
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: [0, 1], y: 0 }}

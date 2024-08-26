@@ -1,27 +1,33 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 export default function Section({ title, img, left, right, multiple }) {
-  const { scrollY } = useScroll();
-  const sectionScrollOpacity = useTransform(
-    scrollY,
-    [
-      0,
-      400 * multiple,
-      500 * multiple,
-      600 * multiple,
-      400 * (multiple + 1.7),
-      400 * (multiple + 1.8),
-    ],
-    [0, 0, 0.5, 1, 0.5, 0]
-  );
+  const { scrollYProgress } = useScroll();
+
+  let sectionScrollOpacity;
+
+  if (multiple === 2) {
+    sectionScrollOpacity = useTransform(
+      scrollYProgress,
+      [0, 0.5, 0.6, 0.78, 0.88],
+      [0, 0, 1, 1, 0]
+    );
+  }
+
+  if (multiple === 1) {
+    sectionScrollOpacity = useTransform(
+      scrollYProgress,
+      [0, 0.24, 0.28, 0.45, 0.57],
+      [0, 0, 1, 1, 0]
+    );
+  }
 
   const sectionScrollY = useTransform(
-    scrollY,
-    [0, 400 * multiple, 500 * multiple, 600 * multiple],
-    [0, 0, 0, -100]
+    scrollYProgress,
+    [0, 0.242 * multiple, 0.246 * multiple],
+    [0, 0, -20]
   );
   return (
     <motion.section
-      className={`h-[500px] w-full flex justify-center md:justify-start md:px-40 mt-10 items-center ${
+      className={`h-[70svh] w-full flex justify-center items-start md:justify-start md:px-40 ${
         left ? "" : "flex-row-reverse"
       }`}
       style={{ opacity: sectionScrollOpacity, y: sectionScrollY }}
@@ -37,7 +43,7 @@ export default function Section({ title, img, left, right, multiple }) {
             right && "md:right-40 md:left-0"
           } w-max h-11 flex justify-center items-center px-3 rounded-3xl left-[50%] translate-x-[-50%] md:translate-x-[0]`}
         >
-          <h1 className="md:text-4xl xl:text-5xl sm:text-3xl text-2xl font-bold text-white">
+          <h1 className="text-2xl font-bold text-white md:text-4xl xl:text-5xl sm:text-3xl">
             {title}
           </h1>
         </div>

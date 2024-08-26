@@ -11,7 +11,7 @@ const initialState = {
     { img: review2, id: "r2", text: "Rich Flavor" },
     { img: review3, id: "r3", text: "Exceptional Taste" },
     { img: review4, id: "r4", text: "Coffee Bliss" },
-    { img: review5, id: "r5", text: "Rich Flavor" },
+    { img: review5, id: "r5", text: "Perfectly Balanced" },
   ],
   activeReview: { img: review1, id: "r1", text: "Heavenly Brew" },
 };

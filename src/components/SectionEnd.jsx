@@ -16,6 +16,13 @@ export default function SectionEnd() {
   const timeout = useRef();
   const review = useSelector((state) => state.reviewSlicer.activeReview);
 
+  const reviewOpacity = useTransform(scrollYProgress, [0, 0.8, 1], [0, 0, 1]);
+  const reviewY = useTransform(
+    scrollYProgress,
+    [0, 0.8, 0.83, 1],
+    [0, 0, -110, -110]
+  );
+
   useEffect(() => {
     if (timeout.current) clearTimeout(timeout.current);
     timeout.current = setTimeout(() => {
@@ -29,13 +36,15 @@ export default function SectionEnd() {
 
   return (
     <motion.section
+      style={{ opacity: reviewOpacity, y: reviewY }}
       layout
-      className="h-[60svh] flex items-center justify-center relative"
+      className="h-[60svh] flex items-center justify-center flex-col"
     >
-      <h1 className="text-8xl text-stone-500 absolute top-0 left-[50%] translate-x-[-50%]">
-        Reviews
-      </h1>
+      <h1 className="text-8xl text-stone-500">Reviews</h1>
 
+      <AnimatePresence mode="wait">
+        <Review review={review} key={review.id} />
+      </AnimatePresence>
       <motion.button
         whileHover={{
           scale: "1.01",
@@ -45,14 +54,10 @@ export default function SectionEnd() {
           boxShadow: "0px 0px 5px white",
           transition: { duration: 0.15 }, // Shorter duration for hover effect
         }}
-        className="absolute px-4 py-1 mb-5 text-3xl font-bold rounded-lg sm:bottom-0 bottom-12 text-stone-300 sm:text-5xl bg-stone-800"
+        className="px-4 py-1 mt-5 text-3xl font-bold rounded-lg text-stone-300 sm:text-5xl bg-stone-800"
       >
         <Link to="products"> Browse Our Products</Link>
       </motion.button>
-
-      <AnimatePresence mode="wait">
-        <Review review={review} key={review.id} />
-      </AnimatePresence>
     </motion.section>
   );
 }

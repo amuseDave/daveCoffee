@@ -1,7 +1,11 @@
+import Modal from "./Modal";
+import { motion, AnimatePresence } from "framer-motion";
 export default function Cart() {
   return (
     <>
-      <h1>Your cart</h1>
+      <Modal>
+        <input type="text" placeholder="DISCOUNT-CODE" className="uppercase" />
+      </Modal>
     </>
   );
 }

@@ -40,3 +40,6 @@ body::after {
     filter: blur(0px) brightness(50%);
   }
 }
+.backdrop {
+  backdrop-filter: blur(3px);
+}

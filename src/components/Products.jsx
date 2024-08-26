@@ -26,8 +26,9 @@ export default function Products() {
   return (
     <>
       <motion.ul
-        transition={{ staggerChildren: 0.2 }}
-        className="grid gap-y-5 gap-x-14 md:grid-cols-3"
+        animate="animation"
+        transition={{ staggerChildren: 0.1 }}
+        className="grid grid-cols-1 sm:gap-y-5 gap-y-0 gap-x-14 md:grid-cols-2 xl:grid-cols-3"
       >
         {COFFEE_PRODUCTS.map((coffee) => (
           <Product key={coffee.id} product={coffee} />

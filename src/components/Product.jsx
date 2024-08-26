@@ -4,12 +4,14 @@ export default function Product({ product }) {
   return (
     <motion.li
       layout
-      animate={{ opacity: [0, 1] }}
-      transition={{ duration: 1 }}
-      className="w-[300px] min-h-[220px]"
+      variants={{
+        animation: { opacity: [0, 1], y: [20, 0], scale: [0.8, 1] },
+      }}
+      transition={{ duration: 0.5 }}
+      className="sm:w-[300px] min-h-[230px] w-[280px]"
     >
       <img
-        className="opacity-75 brightness-75 h-[210px] w-[400px] object-cover rounded-xl border-2 border-stone-500"
+        className="opacity-75 brightness-75 sm:h-[210px] sm:w-[400px] h-[180px] w-[360px] object-cover rounded-xl border-2 border-stone-500"
         src={product.img}
       ></img>
       <div className="flex justify-between mt-1">
@@ -17,11 +19,14 @@ export default function Product({ product }) {
           {product.description}
         </p>
 
-        <div className="px-5 border cursor-pointer border-stone-50 rounded-xl bg-stone-900">
+        <motion.div
+          whileHover={{ filter: "brightness(180%)" }}
+          className="px-5 border cursor-pointer border-stone-50 rounded-xl bg-stone-900"
+        >
           <p className="text-3xl text-stone-200">
             {priceFormatter(product.priceCents)}
           </p>
-        </div>
+        </motion.div>
       </div>
     </motion.li>
   );

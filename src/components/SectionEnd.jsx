@@ -40,7 +40,7 @@ export default function SectionEnd() {
       layout
       className="h-[60svh] flex items-center justify-center flex-col"
     >
-      <h1 className="text-8xl text-stone-500">Reviews</h1>
+      <h1 className="text-4xl text-stone-500">Reviews</h1>
 
       <AnimatePresence mode="wait">
         <Review review={review} key={review.id} />
@@ -54,7 +54,7 @@ export default function SectionEnd() {
           boxShadow: "0px 0px 5px white",
           transition: { duration: 0.15 }, // Shorter duration for hover effect
         }}
-        className="px-4 py-1 mt-5 text-3xl font-bold rounded-lg text-stone-300 sm:text-5xl bg-stone-800"
+        className="px-4 py-1 mt-5 font-bold rounded-lg text-1xl text-stone-300 sm:text-3xl bg-stone-800"
       >
         <Link to="products"> Browse Our Products</Link>
       </motion.button>

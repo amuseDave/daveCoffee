@@ -15,7 +15,7 @@ export default function Product({ product }) {
         src={product.img}
       ></img>
       <div className="flex justify-between mt-1">
-        <p className="text-3xl font-extrabold text-white">
+        <p className="text-xl font-extrabold text-white">
           {product.description}
         </p>
 
@@ -23,7 +23,7 @@ export default function Product({ product }) {
           whileHover={{ filter: "brightness(180%)" }}
           className="px-5 border cursor-pointer border-stone-50 rounded-xl bg-stone-900"
         >
-          <p className="text-3xl text-stone-200">
+          <p className="text-xl text-stone-200">
             {priceFormatter(product.priceCents)}
           </p>
         </motion.div>

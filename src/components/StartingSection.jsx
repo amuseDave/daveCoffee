@@ -45,7 +45,7 @@ export default function StartingSection() {
 
           transition: { duration: 0.15 }, // Shorter duration for hover effect
         }}
-        className="px-4 py-1 text-3xl font-bold rounded-lg text-stone-300 md:text-5xl bg-stone-800 "
+        className="px-4 py-1 text-xl font-bold rounded-lg text-stone-300 md:text-3xl bg-stone-800 "
         style={{ opacity: productsBttn }}
       >
         <Link to="products"> Browse Our Products</Link>

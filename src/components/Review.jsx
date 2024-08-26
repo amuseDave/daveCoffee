@@ -14,7 +14,7 @@ export default function Review({ review }) {
         className="sm:w-[320px] sm:h-[320px] h-[280px] w-[280px] object-cover rounded-full brightness-50"
         alt="review"
       />
-      <p className="text-4xl text-white sm:text-7xl">"{review.text}"</p>
+      <p className="text-2xl text-white sm:text-4xl">"{review.text}"</p>
     </motion.div>
   );
 }

@@ -27,15 +27,15 @@ export default function Section({ title, img, left, right, multiple }) {
   );
   return (
     <motion.section
-      className={`h-[70svh] w-full flex justify-center items-start md:justify-start md:px-40 ${
-        left ? "" : "flex-row-reverse"
+      className={`h-[70svh] w-full flex md:flex-row flex-col justify-center items-center md:justify-between xl:px-40 md:px-20 ${
+        left ? "" : "md:flex-row-reverse"
       }`}
       style={{ opacity: sectionScrollOpacity, y: sectionScrollY }}
     >
       <div className="relative">
         <motion.img
           whileHover={{ filter: "brightness(100%)" }}
-          className="md:w-[380px] md:h-[380px] sm:h-[350px] sm:w-[350px] w-[300px] h-[300px] object-cover brightness-[20%] rounded-full"
+          className="md:w-[320px] md:h-[320px] xl:w-[360px] xl:h-[360px] sm:h-[350px] sm:w-[350px] w-[300px] h-[300px] object-cover brightness-[20%] rounded-full"
           src={img}
         />
         <div
@@ -43,10 +43,21 @@ export default function Section({ title, img, left, right, multiple }) {
             right && "md:right-40 md:left-0"
           } w-max h-11 flex justify-center items-center px-3 rounded-3xl left-[50%] translate-x-[-50%] md:translate-x-[0]`}
         >
-          <h1 className="text-2xl font-bold text-white md:text-4xl xl:text-5xl sm:text-3xl">
+          <h1 className="text-xl font-bold text-white md:text-2xl xl:text-3xl sm:text-1xl">
             {title}
           </h1>
         </div>
+      </div>
+      <div className="xl:w-[320px] md:h-[380px] md:w-[290px] w-[300px] flex items-center justify-end">
+        <p
+          className={`${
+            left ? "md:text-right" : "md:text-left"
+          } text-xl text-white text-center`}
+        >
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias,
+          quisquam deserunt. Officia, eos et. Asperiores placeat suscipit
+          voluptatum delectus labore?
+        </p>
       </div>
     </motion.section>
   );

@@ -16,6 +16,8 @@ export default function Cart() {
     (acc, item) => item.totalPriceCents + acc,
     0
   );
+
+  const isDiscount = totalPrice >= 9999;
   function handleNavigate() {
     dispatch(cartActions.setCartHide());
     setTimeout(() => {
@@ -58,14 +60,37 @@ export default function Cart() {
               ))}
             </motion.ul>
             <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 0, 1] }}
+              transition={{ duration: 0.5 }}
               key="checkout-bttns"
               className="flex flex-col items-center justify-center gap-y-2"
             >
               <div className="flex items-center justify-between w-full">
-                <h1 className="self-start text-xl font-semibold text-stone-950">
-                  Total Price
+                <h1 className="self-start text-xl text-stone-950">
+                  Total Price:
                 </h1>
-                <h1 className="font-semibold">{priceFormatter(totalPrice)}</h1>
+                <div className="flex items-center justify-center gap-x-[6px]">
+                  <motion.span
+                    layout
+                    animate={{ opacity: [0, 1] }}
+                    className={`${
+                      isDiscount ? "line-through" : ""
+                    } w-[73px] flex justify-end`}
+                  >
+                    {priceFormatter(totalPrice)}
+                  </motion.span>
+                  {isDiscount ? (
+                    <motion.h1
+                      className="w-[73px]"
+                      animate={{ opacity: [0, 1] }}
+                    >
+                      {priceFormatter(totalPrice / 1.15)}{" "}
+                    </motion.h1>
+                  ) : (
+                    ""
+                  )}
+                </div>
               </div>
               <button
                 onClick={handleCheckoutNavigate}

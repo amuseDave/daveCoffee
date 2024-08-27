@@ -13,7 +13,7 @@ import p9 from "../assets/product9.jpg";
 const initialState = {
   cart: [],
   discountCodes: ["COFFEELOVER", "SUMMERCOFFEE"],
-  isVisible: false,
+  isVisible: true,
   products: [
     {
       id: "c1",

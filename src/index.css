@@ -12,8 +12,13 @@
 }
 
 body {
-  background-color: black;
+  background-color: rgb(17, 17, 17);
+
   /* background-color: #353535; */
+  background-image: url("beansBg.png");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 body::after {

@@ -2,17 +2,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { cartActions } from "../store/cartSlicer";
 import { AnimatePresence, motion } from "framer-motion";
 import Input from "./Input";
-import { useState } from "react";
+
 import { useNavigate, useSubmit } from "react-router-dom";
 import { priceFormatter } from "../util/priceFormat";
-import backImg from "../assets/arrow-left-solid.svg";
 
 export default function CheckOut() {
-  const [isVisible, setIsVisible] = useState(true);
   const dispatch = useDispatch();
   const submit = useSubmit();
   const cartItems = useSelector((state) => state.cartSlicer.cart);
+  const isCheckoutVisible = useSelector((state) => state.cartSlicer.isCheckout);
   const navigate = useNavigate();
+
   function handleNavigate() {
     dispatch(cartActions.setCartHide());
     setTimeout(() => {
@@ -29,30 +29,13 @@ export default function CheckOut() {
     e.preventDefault();
   }
 
-  function handleBackToCart() {
-    setIsVisible(false);
-    setTimeout(() => {
-      navigate("..");
-    }, 200);
-  }
-
   return (
     <AnimatePresence>
-      {isVisible && (
+      {isCheckoutVisible && (
         <motion.div
           exit={{ x: [0, 30], opacity: [1, 0], transition: { duration: 0.2 } }}
           className="flex flex-col justify-center mt-4 rounded-lg"
         >
-          <h1 className="absolute top-2 left-1/2 translate-x-[-50%] text-2xl font-bold text-stone-100">
-            Checkout
-          </h1>
-          <div
-            onClick={handleBackToCart}
-            className="absolute w-6 cursor-pointer top-2 left-2 opacity-90"
-          >
-            <img src={backImg} />
-          </div>
-
           <motion.form
             animate="animate"
             transition={{ staggerChildren: 0.05 }}
@@ -77,7 +60,7 @@ export default function CheckOut() {
               label="Address"
               placeholder="Your Address"
             />
-            <div className="flex flex-col justify-between">
+            <div className="relative flex flex-col justify-between top-2">
               <div className="flex justify-between font-bold border-b-2 border-stone-500 text-stone-950">
                 <h1>Total Price - </h1>
                 <h1>{priceFormatter(totalPrice)}</h1>

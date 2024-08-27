@@ -3,17 +3,27 @@ import { cartActions } from "../store/cartSlicer";
 import Modal from "../components/Modal";
 import { Outlet, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import backImg from "../assets/arrow-left-solid.svg";
 
 export default function CartPage() {
   const isVisible = useSelector((state) => state.cartSlicer.isVisible);
   const cartItems = useSelector((state) => state.cartSlicer.cart);
+  const isCheckoutVisible = useSelector((state) => state.cartSlicer.isCheckout);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   function handleNavigate() {
+    dispatch(cartActions.setCheckoutHide());
     dispatch(cartActions.setCartHide());
     setTimeout(() => {
       navigate("/products");
     }, 100);
+  }
+
+  function handleBackToCart() {
+    dispatch(cartActions.setCheckoutHide());
+    setTimeout(() => {
+      navigate("/products/cart");
+    }, 200);
   }
 
   return (
@@ -25,6 +35,18 @@ export default function CartPage() {
         >
           X
         </h1>
+        {isCheckoutVisible && (
+          <div
+            onClick={handleBackToCart}
+            className="absolute w-6 cursor-pointer top-2 left-2 opacity-90"
+          >
+            <img src={backImg} />{" "}
+          </div>
+        )}
+        <h1 className="absolute top-2 left-1/2 translate-x-[-50%] text-2xl font-bold text-stone-100">
+          {isCheckoutVisible ? "Checkout" : "Cart"}
+        </h1>
+
         <AnimatePresence mode="wait">
           {cartItems.length < 1 ? (
             <motion.div animate={{ opacity: [0, 1] }}>

@@ -34,7 +34,7 @@ export default function Modal({ children, isVisible }) {
           animate={{ opacity: 1, y: "-50%" }}
           exit={{ opacity: 0, y: "-43%", transition: { duration: 0.1 } }}
           transition={{ duration: 0.3 }}
-          className={`fixed p-4 pt-9 border border-stone-100 bg-stone-600 bg-opacity-70 sm:w-[320px] h-[400px] w-[300px] rounded-xl left-1/2 top-1/2 z-[300] flex flex-col ${
+          className={`fixed p-4 pt-9 border border-stone-100 bg-stone-600 bg-opacity-70 sm:w-[340px] h-[420px] w-[300px] rounded-xl left-1/2 top-1/2 z-[300] flex flex-col ${
             cartItems.length < 1
               ? "justify-center items-center"
               : "justify-between"

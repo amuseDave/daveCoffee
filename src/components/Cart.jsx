@@ -20,15 +20,10 @@ export default function Cart() {
   );
 
   const isDiscount = totalPrice >= 9999;
-  function handleNavigate() {
-    dispatch(cartActions.setCartHide());
-    setTimeout(() => {
-      navigate("/products");
-    }, 100);
-  }
 
   function handleCheckoutNavigate() {
     setIsCheckout(true);
+    dispatch(cartActions.setCheckoutVisible());
     setTimeout(() => {
       navigate("checkout");
     }, 100);
@@ -38,7 +33,7 @@ export default function Cart() {
     <AnimatePresence>
       {!isCheckout && (
         <motion.div
-          className={`flex flex-col justify-between h-full`}
+          className={`flex flex-col justify-between h-full mt-2`}
           exit={{ opacity: 0, transition: { duration: 0.1 } }}
         >
           <AnimatePresence mode="wait">

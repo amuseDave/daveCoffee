@@ -15,6 +15,10 @@ export default function ProductsPage() {
   const [scope, animate] = useAnimate();
   const cart = useSelector((state) => state.cartSlicer.cart);
 
+  useEffect(() => {
+    dispatch(cartActions.setCart());
+  }, []);
+
   function handleCartNavigate() {
     dispatch(cartActions.setCartVisible());
     navigate("cart");

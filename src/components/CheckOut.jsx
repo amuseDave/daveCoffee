@@ -65,6 +65,12 @@ export default function CheckOut() {
   }
 
   useEffect(() => {
+    if (cartItems.length > 0) {
+      dispatch(cartActions.setCheckoutVisible());
+    }
+  }, []);
+
+  useEffect(() => {
     if (data === true) {
       setTimeout(() => {
         dispatch(cartActions.setSuccess());

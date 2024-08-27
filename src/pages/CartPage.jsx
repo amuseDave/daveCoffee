@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { cartActions } from "../store/cartSlicer";
 import Modal from "../components/Modal";
 import { Outlet, useNavigate, useNavigation } from "react-router-dom";
@@ -14,6 +15,10 @@ export default function CartPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const navigation = useNavigation();
+
+  useEffect(() => {
+    dispatch(cartActions.setCart());
+  }, []);
 
   function handleNavigate() {
     if (navigation.state === "submitting") return;

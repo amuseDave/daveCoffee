@@ -86,8 +86,13 @@ const cartSlicer = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    setCart(state) {
+      state.cart = JSON.parse(localStorage.getItem("cart")) || [];
+    },
+
     resetCart(state) {
       state.cart = [];
+      localStorage.setItem("cart", JSON.stringify(state.cart));
     },
     setSuccess(state) {
       state.isSuccess = true;
@@ -135,6 +140,7 @@ const cartSlicer = createSlice({
           state.cart[cartIndex].quantity++;
           state.cart[cartIndex].totalPriceCents +=
             state.cart[cartIndex].priceCents;
+          localStorage.setItem("cart", JSON.stringify(state.cart));
           return;
         }
         state.cart[cartIndex].quantity += product.selectedQuantity;
@@ -142,6 +148,7 @@ const cartSlicer = createSlice({
           product.selectedQuantity * product.priceCents;
       }
       product.selectedQuantity = 1;
+      localStorage.setItem("cart", JSON.stringify(state.cart));
     },
 
     removeItem(state, action) {
@@ -151,12 +158,15 @@ const cartSlicer = createSlice({
 
       if (state.cart[cartIndex].quantity === 1) {
         state.cart.splice(cartIndex, 1);
+
+        localStorage.setItem("cart", JSON.stringify(state.cart));
         return;
       } else {
         state.cart[cartIndex].quantity--;
         state.cart[cartIndex].totalPriceCents -=
           state.cart[cartIndex].priceCents;
       }
+      localStorage.setItem("cart", JSON.stringify(state.cart));
     },
     increaseQuantity(state, action) {
       const productIndex = state.products.findIndex(

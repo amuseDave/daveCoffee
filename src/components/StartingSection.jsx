@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, useTransform, useScroll } from "framer-motion";
 import { Link } from "react-router-dom";
 import coffeeImg from "../assets/coffee.png";
+import searchImg from "../assets/search.png";
 export default function StartingSection() {
   const [isDuration, setIsDuration] = useState(false);
   const { scrollY } = useScroll();
@@ -45,9 +46,13 @@ export default function StartingSection() {
 
           transition: { duration: 0.15 }, // Shorter duration for hover effect
         }}
-        className="px-4 py-1 text-xl font-bold rounded-lg text-stone-300 md:text-3xl bg-stone-800 "
+        className="relative px-4 py-1 pr-12 text-xl font-bold rounded-lg text-stone-300 md:text-2xl bg-stone-800"
         style={{ opacity: productsBttn }}
       >
+        <img
+          src={searchImg}
+          className="absolute right-2 md:w-[34px] sm:w-[30px] w-[28px] invert"
+        />
         <Link to="products"> Browse Our Products</Link>
       </motion.button>
     </div>

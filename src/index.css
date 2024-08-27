@@ -15,36 +15,8 @@ body {
   background-color: rgb(17, 17, 17);
 
   /* background-color: #353535; */
-  background-image: url("beansBg.png");
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
 }
 
-body::after {
-  content: "";
-  z-index: -1;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100svw;
-  min-height: 100svh;
-  background-image: url("beansBg.png");
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-  animation: bodyAppear forwards 1s ease-in;
-}
-
-@keyframes bodyAppear {
-  0% {
-    filter: blur(10px) brightness(0%);
-  }
-
-  100% {
-    filter: blur(0px) brightness(50%);
-  }
-}
 .backdrop {
   backdrop-filter: blur(3px);
 }

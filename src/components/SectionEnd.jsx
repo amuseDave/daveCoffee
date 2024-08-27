@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import searchImg from "../assets/search.png";
 import { reviewActions } from "../store/reviewSlicer";
 import { Link } from "react-router-dom";
 import {
@@ -54,8 +55,12 @@ export default function SectionEnd() {
           boxShadow: "0px 0px 5px white",
           transition: { duration: 0.15 }, // Shorter duration for hover effect
         }}
-        className="px-4 py-1 mt-5 font-bold rounded-lg text-1xl text-stone-300 sm:text-3xl bg-stone-800"
+        className="relative px-4 py-1 pr-12 mt-5 font-bold rounded-lg text-1xl text-stone-300 sm:text-3xl bg-stone-800"
       >
+        <img
+          src={searchImg}
+          className="absolute right-2 sm:w-[34px] w-[27px] invert"
+        />
         <Link to="products"> Browse Our Products</Link>
       </motion.button>
     </motion.section>

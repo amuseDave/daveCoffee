@@ -24,7 +24,18 @@ const router = createBrowserRouter([
 
             children: [
               { index: true, element: <Cart /> },
-              { path: "checkout", element: <CheckOut /> },
+              {
+                path: "checkout",
+                element: <CheckOut />,
+                action: async ({ request }) => {
+                  function delay(ms) {
+                    return new Promise((resolve) => setTimeout(resolve, ms));
+                  }
+                  await delay(2000);
+
+                  return true;
+                },
+              },
             ],
           },
         ],

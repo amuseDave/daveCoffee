@@ -1,17 +1,26 @@
 import { useSelector, useDispatch } from "react-redux";
 import { cartActions } from "../store/cartSlicer";
 import Modal from "../components/Modal";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useNavigation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import backImg from "../assets/arrow-left-solid.svg";
 
 export default function CartPage() {
   const isVisible = useSelector((state) => state.cartSlicer.isVisible);
   const cartItems = useSelector((state) => state.cartSlicer.cart);
+  const isSuccess = useSelector((state) => state.cartSlicer.isSuccess);
   const isCheckoutVisible = useSelector((state) => state.cartSlicer.isCheckout);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const navigation = useNavigation();
+
   function handleNavigate() {
+    if (navigation.state === "submitting") return;
+    if (isSuccess) {
+      dispatch(cartActions.resetCart());
+      dispatch(cartActions.setSuccessFalse());
+    }
     dispatch(cartActions.setCheckoutHide());
     dispatch(cartActions.setCartHide());
     setTimeout(() => {
@@ -20,6 +29,7 @@ export default function CartPage() {
   }
 
   function handleBackToCart() {
+    if (navigation.state === "submitting") return;
     dispatch(cartActions.setCheckoutHide());
     setTimeout(() => {
       navigate("/products/cart");
@@ -35,12 +45,12 @@ export default function CartPage() {
         >
           X
         </h1>
-        {isCheckoutVisible && (
+        {isCheckoutVisible && !isSuccess && (
           <div
             onClick={handleBackToCart}
             className="absolute w-6 cursor-pointer top-2 left-2 opacity-90"
           >
-            <img src={backImg} />{" "}
+            <img src={backImg} />
           </div>
         )}
         <h1 className="absolute top-2 left-1/2 translate-x-[-50%] text-2xl font-bold text-stone-100">

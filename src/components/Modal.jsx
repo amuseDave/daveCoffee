@@ -6,10 +6,16 @@ import { cartActions } from "../store/cartSlicer";
 export default function Modal({ children, isVisible }) {
   const navigate = useNavigate();
   const cartItems = useSelector((state) => state.cartSlicer.cart);
+  const isSuccess = useSelector((state) => state.cartSlicer.isSuccess);
   const dispatch = useDispatch();
 
   function handleNavigate() {
+    if (isSuccess) {
+      dispatch(cartActions.resetCart());
+      dispatch(cartActions.setSuccessFalse());
+    }
     dispatch(cartActions.setCartHide());
+    dispatch(cartActions.setCheckoutHide());
     setTimeout(() => {
       navigate("..");
     }, 100); // Delay matches the exit animation duration
@@ -36,6 +42,8 @@ export default function Modal({ children, isVisible }) {
           transition={{ duration: 0.3 }}
           className={`fixed p-4 pt-9 border border-stone-100 bg-stone-600 bg-opacity-70 sm:w-[340px] h-[420px] w-[300px] rounded-xl left-1/2 top-1/2 z-[300] flex flex-col ${
             cartItems.length < 1
+              ? "justify-center items-center"
+              : isSuccess
               ? "justify-center items-center"
               : "justify-between"
           }`}

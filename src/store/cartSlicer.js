@@ -15,6 +15,7 @@ const initialState = {
   discountCodes: ["COFFEELOVER", "SUMMERCOFFEE"],
   isVisible: true,
   isCheckout: false,
+  isSuccess: false,
   products: [
     {
       id: "c1",
@@ -85,9 +86,20 @@ const cartSlicer = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    resetCart(state) {
+      state.cart = [];
+    },
+    setSuccess(state) {
+      state.isSuccess = true;
+    },
+    setSuccessFalse(state) {
+      state.isSuccess = false;
+    },
+
     setCheckoutVisible(state) {
       state.isCheckout = true;
     },
+
     setCheckoutHide(state) {
       state.isCheckout = false;
     },

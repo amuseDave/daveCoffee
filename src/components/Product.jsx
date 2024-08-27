@@ -84,7 +84,7 @@ export default function Product({ product }) {
         alt={product.title}
       />
       <div className="flex justify-between mt-1">
-        <p className="text-lg font-medium text-stone-400">
+        <p className="text-lg font-medium capitalize text-stone-400">
           {product.title} -{" "}
           <span className="text-base text-stone-200">
             {priceFormatter(product.priceCents)}

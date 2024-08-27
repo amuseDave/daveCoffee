@@ -22,18 +22,19 @@ export default function ProgressBar({ position }) {
     "absolute sm:left-1/2 sm:translate-x-[-50%] left-3 rounded-full";
 
   if (position === "cart") {
-    defaultPosition =
-      "absolute sm:left-1/2 sm:translate-x-[-50%] bottom-2 rounded-full";
+    defaultPosition = "rounded-full w-full";
   }
 
   return (
     <motion.div animate={{ opacity: [0, 0, 0, 1] }} className={defaultPosition}>
       <motion.div
         ref={scope}
-        className="overflow-hidden bg-stone-200 w-[214px] h-[19px] rounded-xl relative"
+        className={`overflow-hidden bg-stone-200 ${
+          position === "cart" ? "w-full" : "w-[214px]"
+        } h-[19px] rounded-xl relative`}
       >
         <motion.p className="absolute text-xs bg-none left-1/2 translate-x-[-50%] z-50">
-          {totalPriceCents >= 9999 ? "Discount Applied!" : "Fill for discount"}
+          {totalPriceCents >= 9999 ? "Discount Applied!" : "Fill for discount!"}
         </motion.p>
         <motion.div
           layout

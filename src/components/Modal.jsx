@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-
-export default function Modal({ children }) {
-  const [isVisible, setIsVisible] = useState(true);
+import { useSelector } from "react-redux";
+export default function Modal({ children, isVisible }) {
+  const [isVisible2, setIsVisible] = useState(true);
   const navigate = useNavigate();
+  const cartItems = useSelector((state) => state.cartSlicer.cart);
 
   function handleNavigate() {
     setIsVisible(false);
@@ -15,7 +16,7 @@ export default function Modal({ children }) {
 
   return (
     <AnimatePresence>
-      {isVisible && (
+      {isVisible2 && isVisible && (
         <motion.div
           key="id1"
           exit={{ opacity: 0, transition: { duration: 0.1 } }}
@@ -25,14 +26,18 @@ export default function Modal({ children }) {
         ></motion.div>
       )}
 
-      {isVisible && (
+      {isVisible2 && isVisible && (
         <motion.dialog
           key="id2"
           initial={{ opacity: 0, x: "-50%", y: "-43%" }}
           animate={{ opacity: 1, y: "-50%" }}
           exit={{ opacity: 0, y: "-43%", transition: { duration: 0.1 } }}
           transition={{ duration: 0.3 }}
-          className="fixed pb-10 p-4 bg-stone-600 bg-opacity-70 sm:w-[320px] h-[350px] w-[300px] rounded-xl left-1/2 top-1/2 z-[300] flex flex-col justify-between"
+          className={`fixed p-4 pt-9 border border-stone-100 bg-stone-600 bg-opacity-70 sm:w-[320px] h-[400px] w-[300px] rounded-xl left-1/2 top-1/2 z-[300] flex flex-col ${
+            cartItems.length < 1
+              ? "justify-center items-center"
+              : "justify-between"
+          }`}
           open
         >
           {children}

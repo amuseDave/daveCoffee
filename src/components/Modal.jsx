@@ -1,15 +1,17 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useNavigation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
 import { cartActions } from "../store/cartSlicer";
 
 export default function Modal({ children, isVisible }) {
   const navigate = useNavigate();
+  const navigation = useNavigation();
   const cartItems = useSelector((state) => state.cartSlicer.cart);
   const isSuccess = useSelector((state) => state.cartSlicer.isSuccess);
   const dispatch = useDispatch();
 
   function handleNavigate() {
+    if (navigation.state === "submitting") return;
     if (isSuccess) {
       dispatch(cartActions.resetCart());
       dispatch(cartActions.setSuccessFalse());
@@ -20,6 +22,7 @@ export default function Modal({ children, isVisible }) {
       navigate("..");
     }, 100); // Delay matches the exit animation duration
   }
+  console.log(isSuccess);
 
   return (
     <AnimatePresence>

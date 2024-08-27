@@ -10,7 +10,7 @@ import {
   useActionData,
 } from "react-router-dom";
 import { priceFormatter } from "../util/priceFormat";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CheckOut() {
   const dispatch = useDispatch();
@@ -64,14 +64,18 @@ export default function CheckOut() {
     console.log("order successful");
   }
 
-  if (data === true) {
-    dispatch(cartActions.setSuccess());
-  }
+  useEffect(() => {
+    if (data === true) {
+      setTimeout(() => {
+        dispatch(cartActions.setSuccess());
+      }, 200);
+    }
+  }, [data]);
 
   return (
     <AnimatePresence mode="wait">
       {data === true ? (
-        <motion.div className="">
+        <motion.div animate={{ opacity: [0, 1] }}>
           <h1 className="self-center text-center text-stone-300">
             Your Order Was Submitted! <br />
             Check Your E-Mail!
@@ -104,7 +108,7 @@ export default function CheckOut() {
               onSubmit={handleSubmit}
               animate="animate"
               transition={{ staggerChildren: 0.05 }}
-              className="space-y-2"
+              className="w-full space-y-2"
             >
               <Input
                 isValidating={isValidating}

@@ -41,11 +41,23 @@ export default function Product({ product }) {
 
   function handleAddItem() {
     dispatch(cartActions.addItem(product.id));
+
     animate(scope2.current, { rotateZ: [0, 15, 0, -15, 0] }, { duration: 0.1 });
+
+    const productRect = scope2.current.getBoundingClientRect();
+
+    const targetX = window.innerWidth - productRect.right - 50; // Adjust 50 for cart width
+    const targetY = -productRect.top + 10; // Adjust 10 for cart top offset
+
+    // Animate movement to the top-right corner
     animate(
       scope3.current,
-      { opacity: [0, 1, 0, 0], x: [0, 300, 300, 0], y: [0, -300, -300, 0] },
-      { duration: 1 }
+      {
+        opacity: [1, 1, 0],
+        x: [0, targetX],
+        y: [0, targetY],
+      },
+      { duration: 0.2 }
     );
   }
 

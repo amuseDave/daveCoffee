@@ -97,9 +97,11 @@ const cartSlicer = createSlice({
           title: product.title,
           priceCents: product.priceCents,
           totalPriceCents: product.priceCents * product.selectedQuantity,
+          img: product.img,
+          id: product.id,
         });
       } else {
-        state.cart[cartIndex].quantity += product.quantity;
+        state.cart[cartIndex].quantity += product.selectedQuantity;
         state.cart[cartIndex].totalPriceCents +=
           product.selectedQuantity * product.priceCents;
       }

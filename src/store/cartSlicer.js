@@ -14,6 +14,7 @@ const initialState = {
   cart: [],
   discountCodes: ["COFFEELOVER", "SUMMERCOFFEE"],
   isVisible: true,
+  isCheckout: false,
   products: [
     {
       id: "c1",
@@ -84,6 +85,13 @@ const cartSlicer = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    setCheckoutVisible(state) {
+      state.isCheckout = true;
+    },
+    setCheckoutHide(state) {
+      state.isCheckout = false;
+    },
+
     setCartVisible(state) {
       state.isVisible = true;
     },

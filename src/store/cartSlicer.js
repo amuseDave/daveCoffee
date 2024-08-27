@@ -13,6 +13,7 @@ import p9 from "../assets/product9.jpg";
 const initialState = {
   cart: [],
   discountCodes: ["COFFEELOVER", "SUMMERCOFFEE"],
+  isVisible: false,
   products: [
     {
       id: "c1",
@@ -83,13 +84,22 @@ const cartSlicer = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    setCartVisible(state) {
+      state.isVisible = true;
+    },
+    setCartHide(state) {
+      state.isVisible = false;
+    },
     addItem(state, action) {
-      const product = state.products.find(
-        (product) => product.id === action.payload
-      );
-      const cartIndex = state.cart.findIndex(
-        (cartItem) => cartItem.id === action.payload
-      );
+      let id;
+      if (action.payload.isAddingInCart) {
+        id = action.payload.id;
+      } else {
+        id = action.payload;
+      }
+
+      const product = state.products.find((product) => product.id === id);
+      const cartIndex = state.cart.findIndex((cartItem) => cartItem.id === id);
 
       if (cartIndex === -1) {
         state.cart.push({
@@ -101,19 +111,17 @@ const cartSlicer = createSlice({
           id: product.id,
         });
       } else {
+        if (action.payload.isAddingInCart) {
+          state.cart[cartIndex].quantity++;
+          state.cart[cartIndex].totalPriceCents +=
+            state.cart[cartIndex].priceCents;
+          return;
+        }
         state.cart[cartIndex].quantity += product.selectedQuantity;
         state.cart[cartIndex].totalPriceCents +=
           product.selectedQuantity * product.priceCents;
       }
       product.selectedQuantity = 1;
-    },
-
-    addItem2(state, action) {
-      const cartIndex = state.cart.findIndex(
-        (cartItem) => cartItem.id === action.payload
-      );
-      state.cart[cartIndex].quantity++;
-      state.cart[cartIndex].totalPriceCents += state.cart[cartIndex].priceCents;
     },
 
     removeItem(state, action) {

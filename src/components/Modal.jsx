@@ -1,14 +1,15 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { cartActions } from "../store/cartSlicer";
+
 export default function Modal({ children, isVisible }) {
-  const [isVisible2, setIsVisible] = useState(true);
   const navigate = useNavigate();
   const cartItems = useSelector((state) => state.cartSlicer.cart);
+  const dispatch = useDispatch();
 
   function handleNavigate() {
-    setIsVisible(false);
+    dispatch(cartActions.setCartHide());
     setTimeout(() => {
       navigate("..");
     }, 100); // Delay matches the exit animation duration
@@ -16,7 +17,7 @@ export default function Modal({ children, isVisible }) {
 
   return (
     <AnimatePresence>
-      {isVisible2 && isVisible && (
+      {isVisible && (
         <motion.div
           key="id1"
           exit={{ opacity: 0, transition: { duration: 0.1 } }}
@@ -26,7 +27,7 @@ export default function Modal({ children, isVisible }) {
         ></motion.div>
       )}
 
-      {isVisible2 && isVisible && (
+      {isVisible && (
         <motion.dialog
           key="id2"
           initial={{ opacity: 0, x: "-50%", y: "-43%" }}

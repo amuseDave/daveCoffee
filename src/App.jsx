@@ -5,6 +5,8 @@ import ProductsPage from "./pages/ProductsPage";
 import CartPage from "./pages/CartPage";
 import { Provider } from "react-redux";
 import store from "./store/reduxStore";
+import Cart from "./components/Cart";
+import CheckOut from "./components/CheckOut";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +21,10 @@ const router = createBrowserRouter([
           {
             path: "cart",
             element: <CartPage />,
-            children: [{ path: "checkout" }],
+            children: [
+              { index: true, element: <Cart /> },
+              { path: "checkout", element: <CheckOut /> },
+            ],
           },
         ],
       },

@@ -26,7 +26,10 @@ export default function ProgressBar({ position }) {
   }
 
   return (
-    <motion.div animate={{ opacity: [0, 0, 0, 1] }} className={defaultPosition}>
+    <motion.div
+      animate={{ opacity: [0, 0, 0, 1] }}
+      className={`${defaultPosition} select-none`}
+    >
       <motion.div
         ref={scope}
         className={`overflow-hidden bg-stone-200 ${

@@ -6,7 +6,7 @@ export default function CartItem({ item }) {
   const dispatch = useDispatch();
 
   function handleAddItem() {
-    dispatch(cartActions.addItem2(item.id));
+    dispatch(cartActions.addItem({ id: item.id, isAddingInCart: true }));
   }
   function handleRemoveItem() {
     dispatch(cartActions.removeItem(item.id));
@@ -18,11 +18,11 @@ export default function CartItem({ item }) {
       variants={{
         animation: { opacity: [0, 1], y: [20, 0], scale: [0.8, 1] },
       }}
-      className="flex justify-between mt-1"
+      className="flex justify-between mt-1 text-stone-100"
     >
       <div className="flex items-center">
-        <p className="capitalize">{item.title}</p> -{" "}
-        <p className="text-sm">{priceFormatter(item.priceCents)}</p>
+        <p className="font-thin capitalize">{item.title}</p> -{" "}
+        <p className="text-sm font-thin">{priceFormatter(item.priceCents)}</p>
       </div>
 
       <div className="flex flex-row items-center gap-x-2 w-[70px] justify-center">
@@ -34,7 +34,7 @@ export default function CartItem({ item }) {
             -
           </p>
         </div>
-        <p className="w-[20px]">{item.quantity}</p>
+        <p className="w-[20px] font-thin">{item.quantity}</p>
         <div>
           <div className="flex items-center justify-center h-[22px] w-[22px] p-2 rounded-full bg-opacity-50 bg-stone-400">
             <p

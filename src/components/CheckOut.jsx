@@ -27,6 +27,11 @@ export default function CheckOut() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    const fd = new FormData(e.target);
+    const fdParsed = Object.fromEntries(fd.entries());
+
+    console.log(fdParsed);
   }
 
   return (
@@ -37,6 +42,7 @@ export default function CheckOut() {
           className="flex flex-col justify-center mt-4 rounded-lg"
         >
           <motion.form
+            onSubmit={handleSubmit}
             animate="animate"
             transition={{ staggerChildren: 0.05 }}
             className="space-y-2"
@@ -65,10 +71,7 @@ export default function CheckOut() {
                 <h1>Total Price - </h1>
                 <h1>{priceFormatter(totalPrice)}</h1>
               </div>
-              <motion.button
-                onClick={handleSubmit}
-                className="w-full py-1 mt-1 transition-colors rounded-lg hover:text-stone-950 text-stone-100 hover:bg-stone-500 bg-stone-950"
-              >
+              <motion.button className="w-full py-1 mt-1 transition-colors rounded-lg hover:text-stone-950 text-stone-100 hover:bg-stone-500 bg-stone-950">
                 Place Order
               </motion.button>
             </div>

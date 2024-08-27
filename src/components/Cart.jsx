@@ -37,13 +37,12 @@ export default function Cart() {
   return (
     <AnimatePresence>
       {!isCheckout && (
-        <motion.div exit={{ opacity: 0, transition: { duration: 0.1 } }}>
-          <h1
-            onClick={handleNavigate}
-            className="absolute text-xl font-bold cursor-pointer select-none top-2 right-2 opacity-80 text-stone-100"
-          >
-            X
-          </h1>
+        <motion.div
+          className={`flex flex-col ${
+            cartItems.length < 1 ? "justify-center" : "justify-between"
+          } h-full`}
+          exit={{ opacity: 0, transition: { duration: 0.1 } }}
+        >
           <AnimatePresence mode="wait">
             {cartItems.length < 1 ? (
               <motion.div animate={{ opacity: [0, 1] }}>
@@ -77,7 +76,7 @@ export default function Cart() {
                     <h1 className="self-start text-xl text-stone-950">
                       Total Price:
                     </h1>
-                    <div className="flex items-center justify-center gap-x-[6px]">
+                    <div className="flex items-center justify-center ">
                       <motion.span
                         layout
                         animate={{ opacity: [0, 1] }}
@@ -89,7 +88,7 @@ export default function Cart() {
                       </motion.span>
                       {isDiscount ? (
                         <motion.h1
-                          className="w-[73px]"
+                          className="w-[73px] flex justify-end"
                           animate={{ opacity: [0, 1] }}
                         >
                           {priceFormatter(totalPrice / 1.15)}{" "}

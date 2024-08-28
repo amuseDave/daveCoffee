@@ -35,7 +35,7 @@ export default function Section({ title, img, left, right, multiple }) {
       <div className="relative">
         <motion.img
           whileHover={{ filter: "brightness(100%)" }}
-          className="md:w-[320px] md:h-[320px] xl:w-[360px] xl:h-[360px] sm:h-[350px] sm:w-[350px] w-[300px] h-[300px] object-cover brightness-[20%] rounded-full"
+          className="md:w-[320px] md:h-[320px] xl:w-[360px] xl:h-[360px] sm:h-[350px] sm:w-[350px] w-[300px] h-[300px] object-cover brightness-[60%] rounded-full"
           src={img}
         />
         <div

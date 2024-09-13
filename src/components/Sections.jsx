@@ -1,5 +1,5 @@
 import Section from "./Section";
-import handMade from "../assets/handmade.png";
+import handMade from "../assets/handmade.jpg";
 import bestPrice from "../assets/best-price.jpg";
 export default function Sections() {
   return (

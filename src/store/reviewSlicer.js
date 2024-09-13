@@ -1,19 +1,20 @@
-import review1 from "../assets/review1.jpg";
-import review2 from "../assets/review2.jpg";
-import review3 from "../assets/review3.jpg";
-import review4 from "../assets/review4.jpg";
-import review5 from "../assets/review5.jpg";
 import { createSlice } from "@reduxjs/toolkit";
+
+import r1 from "../assets/review1.jpg";
+import r2 from "../assets/review2.jpg";
+import r3 from "../assets/review3.jpg";
+import r4 from "../assets/review4.jpg";
+import r5 from "../assets/review5.jpg";
 
 const initialState = {
   reviews: [
-    { img: review1, id: "r1", text: "Heavenly Brew" },
-    { img: review2, id: "r2", text: "Rich Flavor" },
-    { img: review3, id: "r3", text: "Exceptional Taste" },
-    { img: review4, id: "r4", text: "Coffee Bliss" },
-    { img: review5, id: "r5", text: "Perfectly Balanced" },
+    { img: r1, id: "r1", text: "Heavenly Brew" },
+    { img: r2, id: "r2", text: "Rich Flavor" },
+    { img: r3, id: "r3", text: "Exceptional Taste" },
+    { img: r4, id: "r4", text: "Coffee Bliss" },
+    { img: r5, id: "r5", text: "Perfectly Balanced" },
   ],
-  activeReview: { img: review1, id: "r1", text: "Heavenly Brew" },
+  activeReview: { img: r1, id: "r1", text: "Heavenly Brew" },
 };
 
 const reviewSlicer = createSlice({

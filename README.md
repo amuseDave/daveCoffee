@@ -1,3 +1,3 @@
 # coffeeDave
 
-Built with 💙 by amuseDave [coffeeDave](https://davecoffee-6a422.web.app/)
+Built with 💙 by amuseDave [coffeeDave](https://coffeedave-e9804.web.app/products)
